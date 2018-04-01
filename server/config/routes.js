@@ -10,8 +10,10 @@ const files = glob
 
 const routes = Promise.map(files, async (filepath) => {
   const { default: route } = await import(`../actions/${filepath}`);
-  const family = path.dirname(filepath).replace(/\\/g, '/');
+  const family = path.dirname(filepath);
   route.path = path.join('/', family, route.path);
+  // Windows safe
+  route.path = route.path.replace(/\\/g, '/');
 
   debug('found route %s %s', route.method, route.path);
   return route;
