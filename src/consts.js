@@ -1,6 +1,6 @@
 export const CURRENCY = {
-  usd: { precision: 2, force: false },
-  btc: { precision: 8, force: true },
+  usd: { precision: 2 },
+  btc: { precision: 8 },
 };
 
 export default {

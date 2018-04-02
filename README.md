@@ -38,6 +38,7 @@ Run linter and then all available tests.
  - reselect ( https://github.com/reactjs/reselect )
  - bluebird ( http://bluebirdjs.com/ )
  - axios (https://github.com/axios/axios)
+ - mathjs (http://mathjs.org/)
 
 ## Author
 Felipe Gonçalves de Campos ( felipegcampos@gmail.com )

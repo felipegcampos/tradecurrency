@@ -13,6 +13,7 @@
     "immutability-helper": "^2.6.6",
     "joi": "^13.1.2",
     "lodash": "^4.17.5",
+    "mathjs": "^4.0.1",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

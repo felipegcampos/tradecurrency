@@ -15,14 +15,17 @@ import { singleBalanceSelector } from 'store/modules/account';
 import { currencyToNumber } from 'helpers/currency';
 import CurrencyInput from 'components/CurrencyInput';
 
+// Dispatch request after user stop typing for x milliseconds.
 const debounceGetCurrencyPair = debounce((dispatch, currency, amount, balance) => {
   let fmtAmount = '';
   if (amount) {
     // Simple regex to fix the input
     fmtAmount = amount.replace(/[^\d.]/g, '');
     if (fmtAmount) {
+      // Fix invalid numbers
+      fmtAmount = parseFloat(fmtAmount);
       // Set precision accordingly
-      fmtAmount = currencyToNumber(currency, amount);
+      fmtAmount = currencyToNumber(currency, fmtAmount);
       // Do not overcome the balance
       fmtAmount = Math.min(fmtAmount, balance);
       // If for some reason amount is NaN
@@ -61,8 +64,11 @@ const enhance = compose(
   connect(null, mapDispatchToProps),
   withHandlers({
     onChange: props => ({ target: { value } }) => {
-      props.setAmount(value);
-      props.getQuote(value);
+      // if less then 30 chars
+      if (value.length <= 30) {
+        props.setAmount(value);
+        props.getQuote(value);
+      }
     },
   }),
 );
